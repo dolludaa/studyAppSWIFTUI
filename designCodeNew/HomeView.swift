@@ -20,7 +20,7 @@ struct HomeView: View {
                         .clipShape(Circle())
                         .shadow(color: .black.opacity(0.1), radius: 1, x: 0, y: 1)
                         .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
-                        
+                    
                     
                 }
                 .sheet(isPresented: $showUpdate) {
@@ -31,34 +31,27 @@ struct HomeView: View {
             .padding(.leading, 20)
             .padding(.top)
             
-            HStack(spacing: 12.0) {
-                RingView(color1: Color.purple, color2: Color.blue , color3: Color.white, width: 44, height: 44, percent: 68, showCircle: .constant(true))
-                VStack(alignment: .leading, spacing: 4.0)  {
-                    Text ("7 minute left").font(.subheadline).fontWeight(.bold)
-                    Text ("watched 10 mins today").font(.caption)
-
-                }
+            ScrollView(.horizontal, showsIndicators: false) {
+                WatchRingsView()
+                    .padding(.horizontal, 30)
+                    .padding(.bottom, 30)
             }
-            .padding(8)
-            .background(Color.white)
-            .cornerRadius(20)
-            .shadow(color:Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
-            .shadow(color:Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
-
+            
+            
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 25) {
                     ForEach(sectionData) { item in
                         GeometryReader { geometry in
                             
-                        SectionView(section: item)
+                            SectionView(section: item)
                                 .rotation3DEffect(Angle(degrees:
-                Double(geometry.frame(in: .global).minX - 30) / -20
-                        ), axis: (x: 0, y: 10.0, z: 0))
-                    }
+                                                            Double(geometry.frame(in: .global).minX - 30) / -20
+                                                       ), axis: (x: 0, y: 10.0, z: 0))
+                        }
                         .frame(width: 275, height: 275)
+                    }
                 }
-            }
-               
+                
                 .padding(30)
                 .padding(.bottom, 30)
                 .padding(.trailing, 40)
@@ -115,7 +108,47 @@ struct Section: Identifiable{
 }
 
 let sectionData = [Section(title: "Prototype designs in SwiftUi ", text: "18 sections" , logo: "Logo1", image: Image("Card5"), color: (Color("colo"))),
-    Section(title: "Build a SwiftUI App", text: "20 sections" , logo: "Logo1", image: Image("Card4"), color: (Color("mycol2"))),
-    Section(title: "SwiftUI Advanced", text: "15 sections" , logo: "Logo1", image: Image("Card3"), color: (Color("asset"))),
-    Section(title: "UI and Animations in SwiftUI ", text: "19 sections" , logo: "Logo1", image: Image("Card1"), color: (Color("mycol3"))),
-    Section(title: "SwiftUI Concurrency ", text: "23 sections" , logo: "Logo1", image: Image("Card2"), color: (Color("mycol4"))), ]
+                   Section(title: "Build a SwiftUI App", text: "20 sections" , logo: "Logo1", image: Image("Card4"), color: (Color("mycol2"))),
+                   Section(title: "SwiftUI Advanced", text: "15 sections" , logo: "Logo1", image: Image("Card3"), color: (Color("asset"))),
+                   Section(title: "UI and Animations in SwiftUI ", text: "19 sections" , logo: "Logo1", image: Image("Card1"), color: (Color("mycol3"))),
+                   Section(title: "SwiftUI Concurrency ", text: "23 sections" , logo: "Logo1", image: Image("Card2"), color: (Color("mycol4"))), ]
+
+struct WatchRingsView: View {
+    var body: some View {
+        HStack(spacing: 30.0) {
+            HStack(spacing: 12.0) {
+                RingView(color1: Color.purple, color2: Color.blue , color3: Color.white, width: 44, height: 44, percent: 68, showCircle: .constant(true))
+                VStack(alignment: .leading, spacing: 4.0)  {
+                    Text ("7 minute left").bold().modifier(FontModifier(style: .subheadline))
+                    Text ("watched 10 mins today") .modifier(FontModifier(style: .caption ))
+                    
+                }
+                .modifier(FontModifier())
+            }
+            .padding(8)
+            .background(Color.white)
+            .cornerRadius(20)
+            .modifier(ShadowModifier())
+            
+            
+            HStack(spacing: 12.0) {
+                RingView(color1: Color("mycol2"), color2: Color.purple, color3: Color.white, width: 32, height: 32, percent: 53 , showCircle: .constant(true))
+                
+            }
+            .padding(8)
+            .background(Color.white)
+            .cornerRadius(20)
+            .modifier(ShadowModifier())
+            
+            
+            HStack(spacing: 12.0) {
+                RingView(color1: Color.mint, color2: Color.cyan , color3: Color.white, width: 32, height: 32, percent: 32 , showCircle: .constant(true))
+                
+            }
+            .padding(8)
+            .background(Color.white)
+            .cornerRadius(20)
+            .modifier(ShadowModifier())
+        }
+    }
+}
