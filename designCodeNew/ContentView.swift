@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  designcode
-//
-//  Created by Людмила Долонтаева on 19.07.2022.
-//
-
 import SwiftUI
 
 struct ContentView: View {
@@ -86,7 +79,7 @@ struct ContentView: View {
                         }
                 )
             
-            BottomCardView()
+            BottomCardView(showCircle: $showCard)
                 .offset(x: 0, y: showCard ? 360 : 1000)
                 .offset(y: bottomState.height)
                 .blur(radius: show ? 20 : 0)
@@ -131,7 +124,7 @@ struct CardView: View {
         VStack {
             HStack {
                 VStack(alignment: .leading) {
-                    Text("IOS Programming")
+                    Text("Swift UI Full Course")
                         .font(.title)
                         .fontWeight(.semibold)
                         .foregroundColor(Color.white)
@@ -145,7 +138,7 @@ struct CardView: View {
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 20)
-            Spacer()
+            Spacer() 
             Image("Card1")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
@@ -180,16 +173,46 @@ struct TitleView: View {
 }
 
 struct BottomCardView: View {
+    @Binding var showCircle: Bool
+    @State var percent: CGFloat = 0
+    
     var body: some View {
         VStack(spacing: 20) {
             Rectangle()
                 .frame(width: 40, height: 5)
                 .cornerRadius(3)
                 .opacity(0.1)
-            Text("This certificate is proof that Meng To has achieved the UI Design course with approval from a Design+Code instructor.")
+            Text("This certificate is proof that Lyudmila Dolontaeva has achieved the UI Design course with approval from an instructor.")
                 .font(.subheadline)
                 .multilineTextAlignment(.center)
                 .lineSpacing(4)
+            
+            HStack(spacing: 20.0) {
+                RingView(
+                    color1: Color.purple,
+                    color2: Color.blue,
+                    color3: Color("colo"),
+                    width: 88,
+                    height: 88,
+                    percent: 80,
+                    showCircle: $showCircle
+                )
+                
+                
+                VStack(alignment: .leading, spacing: 8.0) {
+                    Text ("Swift UI").fontWeight(.bold)
+                    Text ("12 of 12 sections complited \n10 hours spent so far")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                        .lineSpacing(4)
+                }
+                .padding(20)
+                .background(Color.white )
+                .cornerRadius(20)
+                .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 10)
+                
+            }
+            
             Spacer()
             
         }

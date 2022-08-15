@@ -1,10 +1,3 @@
-//
-//  HomeView.swift
-//  designcode
-//
-//  Created by Людмила Долонтаева on 12.08.2022.
-//
-
 import SwiftUI
 
 struct HomeView: View {
@@ -38,6 +31,20 @@ struct HomeView: View {
             .padding(.leading, 20)
             .padding(.top)
             
+            HStack(spacing: 12.0) {
+                RingView(color1: Color.purple, color2: Color.blue , color3: Color.white, width: 44, height: 44, percent: 68, showCircle: .constant(true))
+                VStack(alignment: .leading, spacing: 4.0)  {
+                    Text ("7 minute left").font(.subheadline).fontWeight(.bold)
+                    Text ("watched 10 mins today").font(.caption)
+
+                }
+            }
+            .padding(8)
+            .background(Color.white)
+            .cornerRadius(20)
+            .shadow(color:Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
+            .shadow(color:Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 25) {
                     ForEach(sectionData) { item in
