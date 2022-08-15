@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		442275D328A919E40046C7DF /* RingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442275D228A919E40046C7DF /* RingView.swift */; };
+		44A1D9E628AADE1A00F8AC86 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A1D9E528AADE1A00F8AC86 /* Modifiers.swift */; };
 		44AF4ED828A90ADB00F66A36 /* UpdateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF4ECC28A90ADB00F66A36 /* UpdateDetail.swift */; };
 		44AF4ED928A90ADB00F66A36 /* Home .swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF4ECD28A90ADB00F66A36 /* Home .swift */; };
 		44AF4EDA28A90ADB00F66A36 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF4ECE28A90ADB00F66A36 /* TabBar.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		442275D228A919E40046C7DF /* RingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingView.swift; sourceTree = "<group>"; };
+		44A1D9E528AADE1A00F8AC86 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		44AF4EB828A90A0B00F66A36 /* designCodeNew.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = designCodeNew.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44AF4EC928A90ADB00F66A36 /* designCodeNew-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "designCodeNew-Bridging-Header.h"; sourceTree = "<group>"; };
 		44AF4ECC28A90ADB00F66A36 /* UpdateDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateDetail.swift; sourceTree = "<group>"; };
@@ -71,6 +75,8 @@
 				44AF4EE228A90B2B00F66A36 /* Preview Content */,
 				44AF4ED228A90ADB00F66A36 /* Assets.xcassets */,
 				44AF4ECF28A90ADB00F66A36 /* ContentView.swift */,
+				442275D228A919E40046C7DF /* RingView.swift */,
+				44A1D9E528AADE1A00F8AC86 /* Modifiers.swift */,
 				44AF4EE528A90B9400F66A36 /* Main.swift */,
 				44AF4ECD28A90ADB00F66A36 /* Home .swift */,
 				44AF4ED528A90ADB00F66A36 /* HomeView.swift */,
@@ -168,7 +174,9 @@
 				44AF4EDC28A90ADB00F66A36 /* UpdateList.swift in Sources */,
 				44AF4EDA28A90ADB00F66A36 /* TabBar.swift in Sources */,
 				44AF4EDF28A90ADB00F66A36 /* Color+extension.swift in Sources */,
+				44A1D9E628AADE1A00F8AC86 /* Modifiers.swift in Sources */,
 				44AF4ED828A90ADB00F66A36 /* UpdateDetail.swift in Sources */,
+				442275D328A919E40046C7DF /* RingView.swift in Sources */,
 				44AF4EE128A90ADB00F66A36 /* MenuView.swift in Sources */,
 				44AF4EDB28A90ADB00F66A36 /* ContentView.swift in Sources */,
 				44AF4EE028A90ADB00F66A36 /* HomeView.swift in Sources */,
