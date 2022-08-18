@@ -4,6 +4,7 @@ struct HomeView: View {
     @Binding var showProfile: Bool
     @State var showUpdate = false
     @Binding var showContent: Bool
+    
     var body: some View {
         ScrollView {
             VStack {
@@ -47,7 +48,7 @@ struct HomeView: View {
                     HStack(spacing: 25) {
                         ForEach(sectionData) { item in
                             GeometryReader { geometry in
-                                
+
                                 SectionView(section: item)
                                     .rotation3DEffect(Angle(degrees:
                                                                 Double(geometry.frame(in: .global).minX - 30) / -20
