@@ -10,14 +10,13 @@ import SwiftUI
 struct TabBar: View {
     var body: some View {
         TabView {
-            Home_().tabItem{
+            Home().tabItem{
                 Image(systemName: "play.circle.fill")
                 Text ("Home")
             }
-            ContentView().tabItem{
+            ContentView().tabItem {
                 Image (systemName: "rectangle.stack.fill")
                 Text("Certifiactes")
-                
             }
         }
     }

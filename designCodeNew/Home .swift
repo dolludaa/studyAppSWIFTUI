@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Home_: View {
+struct Home: View {
     @State var showProfile = false
     @State var viewState = CGSize.zero
     @State var showContent = false
@@ -23,20 +23,19 @@ struct Home_: View {
                 .padding(.top, 44)
                 .background(
                     VStack {
-                        LinearGradient(gradient: Gradient(colors:
-                        [Color("background2"), Color.white]), startPoint: .top, endPoint: .bottom)
-                            .frame(height:200)
-                            Spacer()
+                        LinearGradient(gradient: Gradient(colors: [Color("background2"), Color.white]), startPoint: .top, endPoint: .bottom)
+                            .frame(height: 200)
+                        Spacer()
                     }
-                        .background(Color.white)
+                    .background(Color.white)
                 )
-                .clipShape(RoundedRectangle(cornerRadius: showProfile ? 30 : 0, style: .continuous))
-                .ignoresSafeArea()
+                .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
-                .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0), value: showProfile)
                 .offset(y: showProfile ? -450 : 0)
-                .rotation3DEffect(Angle(degrees: showProfile ? Double(viewState.height / 10) - 10 : 0), axis: (x: 10, y: 0, z: 0))
-                .scaleEffect(showProfile ? 0.8 : 1)
+                .rotation3DEffect(Angle(degrees: showProfile ? Double(viewState.height / 10) - 10 : 0), axis: (x: 10.0, y: 0, z: 0))
+                .scaleEffect(showProfile ? 0.9 : 1)
+                .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
+                .edgesIgnoringSafeArea(.all)
             
             MenuView()
                 .background(Color.black.opacity(0.001))
@@ -44,17 +43,17 @@ struct Home_: View {
                 .offset(y: viewState.height)
                 .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0), value: showProfile)
                 .onTapGesture {
-                    self.showProfile.toggle()
+                    showProfile.toggle()
             }
             .gesture(
                 DragGesture().onChanged { value in
-                    self.viewState = value.translation
+                    viewState = value.translation
                 }
                 .onEnded { value in
-                    if self.viewState.height > 50 {
-                        self.showProfile = false
+                    if viewState.height > 50 {
+                        showProfile = false
                     }
-                    self.viewState = .zero
+                    viewState = .zero
                 }
             )
             
@@ -79,7 +78,7 @@ struct Home_: View {
                 .transition(.move(edge: .top))
                 .animation(.spring(response: 0.6, dampingFraction: 0.8, blendDuration: 0), value: showContent)
                 .onTapGesture {
-                    self.showContent = false
+                    showContent = false
                 }
             }
         }
@@ -90,7 +89,7 @@ struct Home_: View {
   
 struct Home__Previews: PreviewProvider {
     static var previews: some View {
-        Home_()
+        Home()
     }
 }
 
@@ -98,7 +97,7 @@ struct AvatarView: View {
     @Binding var showProfile: Bool
     
     var body: some View {
-        Button(action: {self.showProfile.toggle()}) {
+        Button(action: {showProfile.toggle()}) {
             Image("Avatar")
                 .resizable()
                 .frame(width: 36, height: 36 )
