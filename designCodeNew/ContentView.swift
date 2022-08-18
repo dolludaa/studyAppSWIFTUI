@@ -191,7 +191,6 @@ struct BottomCardView: View {
                 RingView(
                     color1: Color.purple,
                     color2: Color.blue,
-                    color3: Color("colo"),
                     width: 88,
                     height: 88,
                     percent: 80,
