@@ -3,7 +3,6 @@ import SwiftUI
 struct RingView: View {
     var color1 = Color.purple
     var color2 = Color.blue
-    var color3 = Color("colo")
     var width: CGFloat = 300
     var height: CGFloat = 300
     var percent: CGFloat = 80
@@ -24,7 +23,7 @@ struct RingView: View {
            
                .trim(from: showCircle ? progress : 1, to: 1)
                 .stroke(
-                    LinearGradient(gradient: Gradient(colors: [color1, color2, color3]), startPoint: .topTrailing, endPoint: .bottomLeading),
+                    LinearGradient(gradient: Gradient(colors: [color1, color2]), startPoint: .topTrailing, endPoint: .bottomLeading),
                     style: StrokeStyle(lineWidth: 5 * multiplier, lineCap: .round, lineJoin: .round, miterLimit: .infinity, dash: [20,0], dashPhase: 0))
                 .rotationEffect(Angle(degrees: 90))
                 .rotation3DEffect(Angle(degrees: 180), axis: (x: 1, y: 0, z: 0))
