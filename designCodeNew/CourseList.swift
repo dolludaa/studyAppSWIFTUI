@@ -5,32 +5,47 @@ import SwiftUI
 struct CourseList: View {
   
     @State var courses = courseData
+    @State var active = false
     
  
     var body: some View {
-        ScrollView{
+        ZStack {
+            Color.black.opacity(active ? 0.5 : 0)
+                .animation(.linear, value: active)
+                .edgesIgnoringSafeArea(.all)
             
-            VStack(spacing: 20) {
-                ForEach(courses.indices, id:\.self ) { index in
-                    GeometryReader {
-                        CourseView(show: $courses[index].show, course: self.courses[index])
-                            .offset(y: courses[index].show
-                                    ? -$0.frame (in:.global).minY : 0)
-                        
+            
+            ScrollView{
+                VStack(spacing: 20) {
+                    Text ("Courses")
+                        .font(.largeTitle).bold()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading, 30)
+                        .padding(.top,30)
+                        .blur(radius: active ? 20 : 0)
+                    
+                    
+                    ForEach(courses.indices, id:\.self ) { index in
+                        GeometryReader {
+                            CourseView(show: $courses[index].show, course: self.courses[index], active: $active)
+                                .offset(y: courses[index].show
+                                        ? -$0.frame (in:.global).minY : 0)
+                            
+                            
+                        }
+                        .frame(height: courses[index].show ? screen.height : 280)
+                        .frame(maxWidth: courses[index].show ? .infinity : screen.width)
+                        .zIndex(self.courses[index].show ? 1 : 0)
                         
                     }
-                    .frame(height: courses[index].show ? screen.height : 280)
-                    .frame(maxWidth: courses[index].show ? .infinity : screen.width)
-                    
                 }
+                .frame(width: screen.width)
             }
-            
         }
-        .frame(width: screen.width)
+//        .statusBar(hidden: active ? true : false )
 
-        
         }
-    }
+}
 
 
 
@@ -44,6 +59,7 @@ struct CourseView: View {
     
     @Binding var show: Bool
     var course: Course
+    @Binding var active: Bool
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -52,7 +68,7 @@ struct CourseView: View {
                 
                 Text ("Take your SwiftUI app to the App Store with advanced techniques like API data, packages and CMS")
                 
-                Text ("Abiut this course")
+                Text ("About this course")
                     .font(.title).bold()
                 
                 Text("This course is unlike any other. We care about design and want to make sure that you get better at it in the process. It was written for designers and developers who are passionate about collaborating and building real apps for iOS and macOS. While it's not one codebase for all apps, you learn once and can apply the techniques and controls to all platforms with incredible quality, consistency and performance. It's beginner-friendly, but it's also packed with design tricks and efficient workflows for building great user interfaces and interactions.")
@@ -113,6 +129,7 @@ struct CourseView: View {
             .shadow(color: course.color.opacity(0.5), radius: 20, x: 0, y: 20)
             .onTapGesture {
                 self.show.toggle()
+                self.active.toggle()
             }
         }
         .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0), value: show)
