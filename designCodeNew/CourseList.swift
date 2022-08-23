@@ -3,26 +3,35 @@
 import SwiftUI
 
 struct CourseList: View {
-    @State var show = false
-    @State var show2 =  false
+  
+    @State var courses = courseData
     
+ 
     var body: some View {
-        ScrollView {
-            VStack(spacing: 30) {
-                CourseView(show: $show)
-                    GeometryReader { geometry in
-                        CourseView(show: self.$show2)
-                            .offset(y: self.show2 ? -geometry.frame(in:.global).minY : 0)
+        ScrollView{
+            
+            VStack(spacing: 20) {
+                ForEach(courses.indices, id:\.self ) { index in
+                    GeometryReader {
+                        CourseView(show: $courses[index].show, course: self.courses[index])
+                            .offset(y: courses[index].show
+                                    ? -$0.frame (in:.global).minY : 0)
+                        
                         
                     }
-                    .frame(height: show2 ? screen.height : 280)
-                    .frame(maxWidth: show2 ? .infinity : screen.width - 60)
+                    .frame(height: courses[index].show ? screen.height : 280)
+                    .frame(maxWidth: courses[index].show ? .infinity : screen.width)
+                    
                 }
-
             }
-            .frame(width: screen.width)
+            
+        }
+        .frame(width: screen.width)
+
+        
         }
     }
+
 
 
 struct CourseList_Previews: PreviewProvider {
@@ -34,41 +43,45 @@ struct CourseList_Previews: PreviewProvider {
 struct CourseView: View {
     
     @Binding var show: Bool
+    var course: Course
     
     var body: some View {
         ZStack(alignment: .top) {
             
             VStack(alignment: .leading, spacing: 30.0) {
+                
                 Text ("Take your SwiftUI app to the App Store with advanced techniques like API data, packages and CMS")
                 
                 Text ("Abiut this course")
                     .font(.title).bold()
+                
                 Text("This course is unlike any other. We care about design and want to make sure that you get better at it in the process. It was written for designers and developers who are passionate about collaborating and building real apps for iOS and macOS. While it's not one codebase for all apps, you learn once and can apply the techniques and controls to all platforms with incredible quality, consistency and performance. It's beginner-friendly, but it's also packed with design tricks and efficient workflows for building great user interfaces and interactions.")
                 
                 Text("Minimal coding experience required, such as in HTML and CSS. Please note that Xcode 11 and Catalina are essential. Once you get everything installed, it'll get a lot friendlier! I added a bunch of troubleshoots at the end of this page to help you navigate the issues you might encounter.")
             }
             .padding(30)
-            .frame(maxWidth: show ? .infinity : screen.width - 60, maxHeight: show ? .infinity : 280, alignment: .top)
-            .offset(y: show ? 460 : 0)
+            .frame(maxWidth: CGFloat(show ? .infinity : screen.width ), maxHeight: show ? 2000 : 280, alignment: .top)
+            .offset(y: show ? 350 : 0)
             .background(Color.white)
-            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-            .shadow(color: Color.black.opacity(0.2),  radius: 20, x: 0, y: 20)
-            .opacity(show ? 1 : 0  )
+//            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+            .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
+            .opacity(show ? 1 : 0)
+
             
             
             VStack {
                 HStack(alignment: .top) {
                     VStack(alignment: .leading, spacing: 8.0) {
-                        Text("Swift UI Advanced")
+                        Text(course.title)
                             .font(.system(size: 24, weight: .bold))
                             .foregroundColor(Color.white)
-                        Text("20 sections")
+                        Text(course.subtitle)
                             .foregroundColor(Color.white.opacity(0.7))
 
                     }
                     Spacer()
                     ZStack {
-                        Image("Logo1")
+                        course.logo
                            .opacity(show ? 0 : 1)
                         
                         VStack {
@@ -85,7 +98,8 @@ struct CourseView: View {
                     }
                 }
                 Spacer()
-                Image("Card4")
+                
+                course.image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(maxWidth: .infinity)
@@ -93,16 +107,33 @@ struct CourseView: View {
             }
             .padding(show ? 30 : 20)
             .padding(.top, show ? 30 : 0)
-            .frame(width: show ? screen.width : screen.width - 60, height: show ? 460 : 280)
-            .background(Color.blue.opacity(0.5))
+            .frame(width: show ? screen.width : screen.width - 60, height: show ? 360 : 280)
+            .background(course.color)
             .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-            .shadow(color: Color.pink.opacity( 0.3), radius: 20, x: 0, y: 20)
+            .shadow(color: course.color.opacity(0.5), radius: 20, x: 0, y: 20)
             .onTapGesture {
                 self.show.toggle()
             }
         }
         .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0), value: show)
-        .ignoresSafeArea(.all)
+//        .ignoresSafeArea(.all)
 
     }
 }
+
+struct Course: Identifiable {
+    var id = UUID()
+    var title: String
+    var subtitle: String
+    var image: Image
+    var logo: Image
+    var color: Color
+    var show: Bool
+}
+
+var courseData = [
+    Course (title: "Prototype designs in SwiftUi", subtitle: "18 sections", image: Image("Card1"), logo: Image("Logo1"), color: Color("asset"), show: false),
+    Course (title: "SwiftUI Advanced", subtitle: "15 sections", image: Image("Card2"), logo: Image("Logo1"), color: Color("mycol2"), show: false),
+    Course (title: "Build a SwiftUI App", subtitle: "20 sections", image: Image("Card3"), logo: Image("Logo1"), color: Color("mycol3"), show: false)
+]
+

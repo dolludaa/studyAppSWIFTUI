@@ -51,7 +51,7 @@ struct HomeView: View {
 
                                 SectionView(section: item)
                                     .rotation3DEffect(Angle(degrees:
-                                                                Double(geometry.frame(in: .global).minX - 30) / -20
+                                                                Double(geometry.frame(in: .global).minX - 70) / 40
                                                            ), axis: (x: 0, y: 10.0, z: 0))
                             }
                             .frame(width: 275, height: 275)
@@ -130,7 +130,7 @@ struct Section: Identifiable{
     var color: Color
 }
 
-let sectionData = [Section(title: "Prototype designs in SwiftUi ", text: "18 sections" , logo: "Logo1", image: Image("Card5"), color: (Color("colo"))),
+let sectionData = [Section(title: "Prototype designs in SwiftUi", text: "18 sections" , logo: "Logo1", image: Image("Card5"), color: (Color("colo"))),
                    Section(title: "Build a SwiftUI App", text: "20 sections" , logo: "Logo1", image: Image("Card4"), color: (Color("mycol2"))),
                    Section(title: "SwiftUI Advanced", text: "15 sections" , logo: "Logo1", image: Image("Card3"), color: (Color("asset"))),
                    Section(title: "UI and Animations in SwiftUI ", text: "19 sections" , logo: "Logo1", image: Image("Card1"), color: (Color("mycol3"))),
