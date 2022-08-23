@@ -6,11 +6,12 @@ struct CourseList: View {
   
     @State var courses = courseData
     @State var active = false
+    @State var activeIndex = -1
     
  
     var body: some View {
         ZStack {
-            Color.black.opacity(active ? 0.5 : 0)
+            Color.white
                 .animation(.linear, value: active)
                 .edgesIgnoringSafeArea(.all)
             
@@ -25,21 +26,31 @@ struct CourseList: View {
                         .blur(radius: active ? 20 : 0)
                     
                     
-                    ForEach(courses.indices, id:\.self ) { index in
-                        GeometryReader {
-                            CourseView(show: $courses[index].show, course: self.courses[index], active: $active)
+                    ForEach(courses.indices, id: \.self ) { index in
+                        GeometryReader { geometry in
+                            CourseView(
+                                show: $courses[index].show,
+                                       course: courses[index],
+                                       active: $active,
+                                       index: index,
+                                       activeIndex: self.$activeIndex
+                            )
                                 .offset(y: courses[index].show
-                                        ? -$0.frame (in:.global).minY : 0)
+                    ? -geometry.frame (in:.global).minY : 0)
+                                .opacity(self.activeIndex != index && self.active ? 0 : 1)
+                                .scaleEffect(self.activeIndex != index && self.active ? 0.5 : 1)
+                                .offset(x: self.activeIndex != index && self.active ? screen.width : 0)
                             
                             
                         }
-                        .frame(height: courses[index].show ? screen.height : 280)
-                        .frame(maxWidth: courses[index].show ? .infinity : screen.width)
+                        .frame(height: 280)
+                        .frame(maxWidth: self.courses[index].show ? .infinity : screen.width - 60)
                         .zIndex(self.courses[index].show ? 1 : 0)
                         
                     }
                 }
                 .frame(width: screen.width)
+                .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
             }
         }
 //        .statusBar(hidden: active ? true : false )
@@ -60,6 +71,8 @@ struct CourseView: View {
     @Binding var show: Bool
     var course: Course
     @Binding var active: Bool
+    var index: Int
+    @Binding var activeIndex: Int
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -79,8 +92,8 @@ struct CourseView: View {
             .frame(maxWidth: CGFloat(show ? .infinity : screen.width ), maxHeight: show ? 2000 : 280, alignment: .top)
             .offset(y: show ? 350 : 0)
             .background(Color.white)
-//            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-            .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
+            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+//            .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)x
             .opacity(show ? 1 : 0)
 
             
@@ -130,10 +143,17 @@ struct CourseView: View {
             .onTapGesture {
                 self.show.toggle()
                 self.active.toggle()
+                if self.show {
+                    self.activeIndex = self.index
+                } else {
+                    self.activeIndex = -1
+                }
             }
         }
-        .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0), value: show)
-//        .ignoresSafeArea(.all)
+        .frame(height: show ? screen.height : 280)
+        .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
+        .edgesIgnoringSafeArea(.all)
+
 
     }
 }
