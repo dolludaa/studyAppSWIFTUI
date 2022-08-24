@@ -3,12 +3,12 @@
 import SwiftUI
 
 struct CourseList: View {
-  
+    
     @State var courses = courseData
     @State var active = false
     @State var activeIndex = -1
     
- 
+    
     var body: some View {
         ZStack {
             Color.white
@@ -16,7 +16,7 @@ struct CourseList: View {
                 .edgesIgnoringSafeArea(.all)
             
             
-            ScrollView{
+            ScrollView(showsIndicators: false) {
                 VStack(spacing: 20) {
                     Text ("Courses")
                         .font(.largeTitle).bold()
@@ -30,16 +30,16 @@ struct CourseList: View {
                         GeometryReader { geometry in
                             CourseView(
                                 show: $courses[index].show,
-                                       course: courses[index],
-                                       active: $active,
-                                       index: index,
-                                       activeIndex: self.$activeIndex
+                                course: courses[index],
+                                active: $active,
+                                index: index,
+                                activeIndex: self.$activeIndex
                             )
-                                .offset(y: courses[index].show
-                    ? -geometry.frame (in:.global).minY : 0)
-                                .opacity(self.activeIndex != index && self.active ? 0 : 1)
-                                .scaleEffect(self.activeIndex != index && self.active ? 0.5 : 1)
-                                .offset(x: self.activeIndex != index && self.active ? screen.width : 0)
+                            .offset(y: courses[index].show
+                                    ? -geometry.frame (in:.global).minY : 0)
+                            .opacity(self.activeIndex != index && self.active ? 0 : 1)
+                            .scaleEffect(self.activeIndex != index && self.active ? 0.5 : 1)
+                            .offset(x: self.activeIndex != index && self.active ? screen.width : 0)
                             
                             
                         }
@@ -48,14 +48,15 @@ struct CourseList: View {
                         .zIndex(self.courses[index].show ? 1 : 0)
                         
                     }
+                    
                 }
                 .frame(width: screen.width)
-                .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
+                .animation(.spring())
             }
         }
-//        .statusBar(hidden: active ? true : false )
-
-        }
+        //        .statusBar(hidden: active ? true : false )
+        
+    }
 }
 
 
@@ -73,6 +74,7 @@ struct CourseView: View {
     @Binding var active: Bool
     var index: Int
     @Binding var activeIndex: Int
+    @State var activeView = CGSize.zero
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -88,14 +90,14 @@ struct CourseView: View {
                 
                 Text("Minimal coding experience required, such as in HTML and CSS. Please note that Xcode 11 and Catalina are essential. Once you get everything installed, it'll get a lot friendlier! I added a bunch of troubleshoots at the end of this page to help you navigate the issues you might encounter.")
             }
-            .padding(30)
+            .padding(22)
             .frame(maxWidth: CGFloat(show ? .infinity : screen.width ), maxHeight: show ? 2000 : 280, alignment: .top)
             .offset(y: show ? 350 : 0)
             .background(Color.white)
             .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-//            .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)x
+//            .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
             .opacity(show ? 1 : 0)
-
+            
             
             
             VStack {
@@ -106,24 +108,24 @@ struct CourseView: View {
                             .foregroundColor(Color.white)
                         Text(course.subtitle)
                             .foregroundColor(Color.white.opacity(0.7))
-
+                        
                     }
                     Spacer()
                     ZStack {
                         course.logo
-                           .opacity(show ? 0 : 1)
+                            .opacity(show ? 0 : 1)
                         
                         VStack {
                             Image(systemName: "xmark")
                                 .font(.system(size: 16, weight: .medium))
                                 .foregroundColor(.white)
-
-                    }
-                    .frame(width: 36, height: 36)
-                    .background(Color.black)
-                    .clipShape(Circle())
-                    .opacity(show ? 1 : 0 )
-                    
+                            
+                        }
+                        .frame(width: 36, height: 36)
+                        .background(Color.black)
+                        .clipShape(Circle())
+                        .opacity(show ? 1 : 0 )
+                        
                     }
                 }
                 Spacer()
@@ -139,7 +141,7 @@ struct CourseView: View {
             .frame(width: show ? screen.width : screen.width - 60, height: show ? 360 : 280)
             .background(course.color)
             .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-            .shadow(color: course.color.opacity(0.5), radius: 20, x: 0, y: 20)
+            .shadow(color: course.color.opacity(0.6), radius: 20, x: 0, y: 20)
             .onTapGesture {
                 self.show.toggle()
                 self.active.toggle()
@@ -149,12 +151,20 @@ struct CourseView: View {
                     self.activeIndex = -1
                 }
             }
+            
+            if show {
+//                CourseDetail(course: course, show: $show, active: $active, activeIndex: $activeIndex, activeView: $activeView)
+//                    .background(Color.white)
+//                    .animation(nil)
+            }
+            
         }
         .frame(height: show ? screen.height : 280)
+//        .scaleEffect(1 - self.activeView.height / 1000)
         .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
         .edgesIgnoringSafeArea(.all)
-
-
+        
+        
     }
 }
 

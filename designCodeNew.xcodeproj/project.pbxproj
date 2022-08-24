@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		442275D328A919E40046C7DF /* RingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442275D228A919E40046C7DF /* RingView.swift */; };
+		4429674528B64F3400CF1DBB /* CourseDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4429674428B64F3400CF1DBB /* CourseDetail.swift */; };
 		4495DECF28B11C7200A6FBDF /* View+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495DECE28B11C7200A6FBDF /* View+extension.swift */; };
 		44A1D9E628AADE1A00F8AC86 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A1D9E528AADE1A00F8AC86 /* Modifiers.swift */; };
 		44A1D9E828AE663700F8AC86 /* CourseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A1D9E728AE663700F8AC86 /* CourseList.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		442275D228A919E40046C7DF /* RingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingView.swift; sourceTree = "<group>"; };
+		4429674428B64F3400CF1DBB /* CourseDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetail.swift; sourceTree = "<group>"; };
 		4495DECE28B11C7200A6FBDF /* View+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+extension.swift"; sourceTree = "<group>"; };
 		44A1D9E528AADE1A00F8AC86 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		44A1D9E728AE663700F8AC86 /* CourseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseList.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				44AF4ECD28A90ADB00F66A36 /* Home .swift */,
 				44AF4ED528A90ADB00F66A36 /* HomeView.swift */,
 				44A1D9E728AE663700F8AC86 /* CourseList.swift */,
+				4429674428B64F3400CF1DBB /* CourseDetail.swift */,
 				44AF4ED628A90ADB00F66A36 /* MenuView.swift */,
 				44AF4ECE28A90ADB00F66A36 /* TabBar.swift */,
 				44AF4ECC28A90ADB00F66A36 /* UpdateDetail.swift */,
@@ -179,6 +182,7 @@
 				44AF4EE628A90B9400F66A36 /* Main.swift in Sources */,
 				44AF4EDC28A90ADB00F66A36 /* UpdateList.swift in Sources */,
 				4495DECF28B11C7200A6FBDF /* View+extension.swift in Sources */,
+				4429674528B64F3400CF1DBB /* CourseDetail.swift in Sources */,
 				44AF4EDA28A90ADB00F66A36 /* TabBar.swift in Sources */,
 				44AF4EDF28A90ADB00F66A36 /* Color+extension.swift in Sources */,
 				44A1D9E628AADE1A00F8AC86 /* Modifiers.swift in Sources */,
