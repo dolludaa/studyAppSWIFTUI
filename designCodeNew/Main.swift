@@ -6,8 +6,7 @@ import SwiftUI
 struct DesignCodeNewApp: App {
     var body: some Scene {
         WindowGroup {
-            PostList()
-            //            TabBar()
+            TabBar()
         }
     }
 }

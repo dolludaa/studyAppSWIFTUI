@@ -13,7 +13,7 @@ struct MenuView: View {
             Spacer()
             
             VStack(spacing: 16) {
-                Text ("Lyudmila - 28% complete")
+                Text ("Liudmila - 28% complete")
                     .font(.caption)
                 
                 Color.white
@@ -35,11 +35,7 @@ struct MenuView: View {
             .frame(maxWidth: .infinity)
             .frame(height: 300)
             .background(
-                LinearGradient(
-                    colors: [
-                        .white,
-                        Color(red: 222 / 255, green: 228 / 255, blue: 241 / 255, opacity: 1)
-                    ],
+                LinearGradient(gradient: Gradient(colors: [Color("background3"),Color("background3").opacity(0.6)]),
                     startPoint: .top,
                     endPoint: .bottom
                 )
