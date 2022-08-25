@@ -182,7 +182,7 @@ struct BottomCardView: View {
                 .frame(width: 40, height: 5)
                 .cornerRadius(3)
                 .opacity(0.1)
-            Text("This certificate is proof that Lyudmila Dolontaeva has achieved the UI Design course with approval from an instructor.")
+            Text("This certificate is proof that Liudmila Dolontaeva has achieved the UI Design course with approval from an instructor.")
                 .font(.subheadline)
                 .multilineTextAlignment(.center)
                 .lineSpacing(4)
@@ -218,7 +218,7 @@ struct BottomCardView: View {
         .padding(.top, 8)
         .padding(.horizontal, 20)
         .frame( maxWidth: .infinity)
-        .background(Color.white)
+        .background(BlurView(style: .systemUltraThinMaterial))
         .cornerRadius(30)
         .shadow(radius: 20)
     }
