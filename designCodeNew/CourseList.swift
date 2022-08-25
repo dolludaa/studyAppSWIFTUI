@@ -4,9 +4,10 @@ import SwiftUI
 
 struct CourseList: View {
     
-    @State var courses = courseData
+    @ObservedObject var store = CourseStore()
     @State var active = false
     @State var activeIndex = -1
+    @State var avtiveView = CGSize.zero
     
     
     var body: some View {
@@ -26,16 +27,16 @@ struct CourseList: View {
                         .blur(radius: active ? 20 : 0)
                     
                     
-                    ForEach(courses.indices, id: \.self ) { index in
+                    ForEach(store.courses.indices, id: \.self ) { index in
                         GeometryReader { geometry in
                             CourseView(
-                                show: $courses[index].show,
-                                course: courses[index],
+                                show: $store.courses[index].show,
+                                course: store.courses[index],
                                 active: $active,
                                 index: index,
                                 activeIndex: self.$activeIndex
                             )
-                            .offset(y: courses[index].show
+                            .offset(y: store.courses[index].show
                                     ? -geometry.frame (in:.global).minY : 0)
                             .opacity(self.activeIndex != index && self.active ? 0 : 1)
                             .scaleEffect(self.activeIndex != index && self.active ? 0.5 : 1)
@@ -44,8 +45,8 @@ struct CourseList: View {
                             
                         }
                         .frame(height: 280)
-                        .frame(maxWidth: self.courses[index].show ? .infinity : screen.width - 60)
-                        .zIndex(self.courses[index].show ? 1 : 0)
+                        .frame(maxWidth: self.store.courses[index].show ? .infinity : screen.width - 60)
+                        .zIndex(self.store.courses[index].show ? 1 : 0)
                         
                     }
                     
