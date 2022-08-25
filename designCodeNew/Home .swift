@@ -37,6 +37,7 @@ struct Home: View {
                 .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
                 .edgesIgnoringSafeArea(.all)
             
+            
             MenuView()
                 .background(Color.black.opacity(0.001))
                 .offset(y: showProfile ? 0 : .infinity)
@@ -61,6 +62,7 @@ struct Home: View {
                 Color.white.edgesIgnoringSafeArea(.all)
                 
                 ContentView()
+                
                 
                 VStack {
                     HStack {
