@@ -1,6 +1,7 @@
 
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct CourseList: View {
     
@@ -131,7 +132,7 @@ struct CourseView: View {
                 }
                 Spacer()
                 
-                course.image
+                WebImage(url: course.image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(maxWidth: .infinity)
@@ -173,15 +174,15 @@ struct Course: Identifiable {
     var id = UUID()
     var title: String
     var subtitle: String
-    var image: Image
+    var image: URL
     var logo: Image
     var color: Color
     var show: Bool
 }
 
 var courseData = [
-    Course (title: "Prototype designs in SwiftUi", subtitle: "18 sections", image: Image("Card1"), logo: Image("Logo1"), color: Color("asset"), show: false),
-    Course (title: "SwiftUI Advanced", subtitle: "15 sections", image: Image("Card2"), logo: Image("Logo1"), color: Color("mycol2"), show: false),
-    Course (title: "Build a SwiftUI App", subtitle: "20 sections", image: Image("Card3"), logo: Image("Logo1"), color: Color("mycol3"), show: false)
+    Course (title: "Prototype designs in SwiftUi", subtitle: "18 sections", image: URL(string: "https://dl.dropbox.com/s/1e1a5isj56g922q/Card1%402x.png?dl=0")!, logo: Image("Logo1"), color: Color("asset"), show: false),
+    Course (title: "SwiftUI Advanced", subtitle: "15 sections", image: URL(string: "https://dl.dropbox.com/s/qbfli2ix4efs8jf/Card2%402x.png?dl=0")!, logo: Image("Logo1"), color: Color("mycol2"), show: false),
+    Course (title: "Build a SwiftUI App", subtitle: "20 sections", image: URL(string: "https://dl.dropbox.com/s/n44t2dpj8lz4l5b/Card4%402x.png?dl=0")!, logo: Image("Logo1"), color: Color("mycol3"), show: false)
 ]
 

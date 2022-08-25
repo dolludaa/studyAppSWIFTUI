@@ -32,14 +32,15 @@ class CourseStore: ObservableObject {
     @Published var courses: [Course] = courseData
      
     init () {
+        let colors = [Color("asset"), Color("mycol2"),Color("mycol3")]
         getArray(id: "course") { items in
             items.forEach {item in
                 self.courses.append(Course(
                     title: item.fields["title"] as! String,
                     subtitle: item.fields["subtitle"] as! String,
-                    image: Image("Card2"),
+                    image: item.fields.linkedAsset(at: "image")?.url ?? URL(string: "")!,
                     logo: Image("Logo1"),
-                    color: Color("mycol2"),
+                    color: colors.randomElement()!,
                     show: false))
             }
         }
