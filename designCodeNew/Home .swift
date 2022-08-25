@@ -15,7 +15,7 @@ struct Home: View {
     var body: some View {
         ZStack {
             
-            Color.gray.opacity(showProfile ?  0.4 : 0)
+           Color("background2")
                 .animation(.spring(response: 0.9, dampingFraction: 0.7, blendDuration:0.8), value: showProfile)
                 .edgesIgnoringSafeArea(.all)
             
@@ -23,11 +23,11 @@ struct Home: View {
                 .padding(.top, 44)
                 .background(
                     VStack {
-                        LinearGradient(gradient: Gradient(colors: [Color("background2"), Color.white]), startPoint: .top, endPoint: .bottom)
+                        LinearGradient(gradient: Gradient(colors: [Color("background2"), Color("background1")]), startPoint: .top, endPoint: .bottom)
                             .frame(height: 200)
                         Spacer()
                     }
-                    .background(Color.white)
+                    .background(Color("background1"))
                 )
                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
@@ -59,7 +59,7 @@ struct Home: View {
             )
             
             if showContent {
-                Color.white.edgesIgnoringSafeArea(.all)
+                BlurView(style: .systemMaterial).edgesIgnoringSafeArea(.all)
                 
                 ContentView()
                 
@@ -91,7 +91,8 @@ struct Home: View {
   
 struct Home__Previews: PreviewProvider {
     static var previews: some View {
-        Home()
+        Home().environment(\.colorScheme, .dark)
+            .environment(\.dynamicTypeSize, .xLarge)
     }
 }
 
