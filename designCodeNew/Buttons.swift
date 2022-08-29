@@ -1,7 +1,13 @@
 import SwiftUI
 
+func huptic(type: UINotificationFeedbackGenerator.FeedbackType) {
+    UINotificationFeedbackGenerator().notificationOccurred(type)
+}
+func impact(style: UIImpactFeedbackGenerator.FeedbackStyle) {
+    UIImpactFeedbackGenerator(style: style).impactOccurred()
+}
+
 struct Buttons: View {
-    
     
     var body: some View {
         VStack(spacing: 50) {
@@ -66,6 +72,7 @@ struct RectangleButton : View {
             .gesture(
                 LongPressGesture(minimumDuration: 0.5, maximumDistance: 10).onChanged { value in
                     self.tap = true
+                    huptic(type: .success)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1){
                         self.tap = false
                     }
