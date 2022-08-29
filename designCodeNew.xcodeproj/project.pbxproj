@@ -20,6 +20,7 @@
 		4495DECF28B11C7200A6FBDF /* View+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495DECE28B11C7200A6FBDF /* View+extension.swift */; };
 		44A1D9E628AADE1A00F8AC86 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A1D9E528AADE1A00F8AC86 /* Modifiers.swift */; };
 		44A1D9E828AE663700F8AC86 /* CourseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A1D9E728AE663700F8AC86 /* CourseList.swift */; };
+		44A8E13E28BD1616007E7FF0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A8E13D28BD1616007E7FF0 /* LoginView.swift */; };
 		44AF4ED828A90ADB00F66A36 /* UpdateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF4ECC28A90ADB00F66A36 /* UpdateDetail.swift */; };
 		44AF4ED928A90ADB00F66A36 /* Home .swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF4ECD28A90ADB00F66A36 /* Home .swift */; };
 		44AF4EDA28A90ADB00F66A36 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF4ECE28A90ADB00F66A36 /* TabBar.swift */; };
@@ -46,6 +47,7 @@
 		4495DECE28B11C7200A6FBDF /* View+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+extension.swift"; sourceTree = "<group>"; };
 		44A1D9E528AADE1A00F8AC86 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		44A1D9E728AE663700F8AC86 /* CourseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseList.swift; sourceTree = "<group>"; };
+		44A8E13D28BD1616007E7FF0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		44AF4EB828A90A0B00F66A36 /* designCodeNew.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = designCodeNew.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44AF4EC928A90ADB00F66A36 /* designCodeNew-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "designCodeNew-Bridging-Header.h"; sourceTree = "<group>"; };
 		44AF4ECC28A90ADB00F66A36 /* UpdateDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateDetail.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				44AF4EE528A90B9400F66A36 /* Main.swift */,
 				44AF4ECD28A90ADB00F66A36 /* Home .swift */,
 				44AF4ED528A90ADB00F66A36 /* HomeView.swift */,
+				44A8E13D28BD1616007E7FF0 /* LoginView.swift */,
 				44A1D9E728AE663700F8AC86 /* CourseList.swift */,
 				4429675128B7942200CF1DBB /* CourseStore.swift */,
 				4429674428B64F3400CF1DBB /* CourseDetail.swift */,
@@ -217,6 +220,7 @@
 				4429674528B64F3400CF1DBB /* CourseDetail.swift in Sources */,
 				44AF4EDA28A90ADB00F66A36 /* TabBar.swift in Sources */,
 				44AF4EDF28A90ADB00F66A36 /* Color+extension.swift in Sources */,
+				44A8E13E28BD1616007E7FF0 /* LoginView.swift in Sources */,
 				4429674D28B67E6700CF1DBB /* DataStore.swift in Sources */,
 				44A1D9E628AADE1A00F8AC86 /* Modifiers.swift in Sources */,
 				44AF4ED828A90ADB00F66A36 /* UpdateDetail.swift in Sources */,
