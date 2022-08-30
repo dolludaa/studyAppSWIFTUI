@@ -13,6 +13,7 @@ struct LoginView: View {
     @State var isFocused = false
     @State var showAller = false
     @State var allertMessage = ""
+    @State var isLoading = false
     
     
     func hideKeyboard() {
@@ -87,9 +88,17 @@ struct LoginView: View {
                         
                     Spacer()
                     
-                    Button(action: {self.showAller = true
-                        self.hideKeyboard()
-                        self.isFocused = false 
+                    Button(action: {                        self.hideKeyboard()
+                        self.isFocused = false
+                        self.isLoading = true
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            self.isLoading = false
+                            self.showAller = true
+
+                        }
+                        
+                        
                     }) {
                         Text ("Log in").foregroundColor(.black)
                     }
@@ -110,6 +119,10 @@ struct LoginView: View {
             .onTapGesture {
                 self.isFocused = false
                 self.hideKeyboard()
+            }
+            
+            if isLoading {
+                LoadingView()
             }
         }
         
