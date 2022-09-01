@@ -39,7 +39,7 @@ struct Home: View {
                 .edgesIgnoringSafeArea(.all)
             
             
-            MenuView()
+            MenuView(showProfile: $showProfile)
                 .background(Color.black.opacity(0.001))
                 .offset(y: showProfile ? 0 : .infinity)
                 .offset(y: viewState.height)
