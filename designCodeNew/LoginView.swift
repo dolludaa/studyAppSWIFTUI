@@ -12,7 +12,6 @@ import FirebaseAuth
 struct LoginView: View {
     @State var email = ""
     @State var password = ""
-    //    @State var isFocused = false
     @State var showAller = false
     @State var allertMessage = ""
     @State var isLoading = false
@@ -26,12 +25,12 @@ struct LoginView: View {
             
             ZStack(alignment: .top) {
                 
-                Color("background2")
+                Color.white
                     .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                     .edgesIgnoringSafeArea(.all)
                 
                 CoverView()
-                    .edgesIgnoringSafeArea(.all)
+                    .ignoresSafeArea()
                 
             }
             .onTapGesture {
@@ -78,7 +77,6 @@ struct LoginView: View {
     
     func login() {
         hideKeyboard()
-        //        isFocused = false
         isLoading = true
         
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
@@ -90,6 +88,7 @@ struct LoginView: View {
             } else {
                 isSuccessful = true
                 user.isLogged = true
+                UserDefaults.standard.set(true, forKey: "isLogged")
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     isSuccessful = false
