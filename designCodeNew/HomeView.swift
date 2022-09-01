@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    
     @Binding var showProfile: Bool
     @State var showUpdate = false
     @Binding var showContent: Bool
@@ -14,7 +15,7 @@ struct HomeView: View {
                     Spacer()
                     
                     AvatarView(showProfile: $showProfile)
-                    Button(action: {self.showUpdate.toggle()}) {
+                    Button(action: { showUpdate.toggle() }) {
                         Image (systemName: "bell")
 //                            .tint(.black)
                             .foregroundColor(.primary)
@@ -86,7 +87,11 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(showProfile: .constant(false), showContent: .constant(false ))
+        HomeView(
+            showProfile: .constant(false),
+            showContent: .constant(false)
+        )
+        .environmentObject(UserStore())
     }
 }
 
