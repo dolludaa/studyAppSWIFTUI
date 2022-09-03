@@ -15,9 +15,10 @@ struct HomeView: View {
                     Spacer()
                     
                     AvatarView(showProfile: $showProfile)
+                    
                     Button(action: { showUpdate.toggle() }) {
                         Image (systemName: "bell")
-//                            .tint(.black)
+                        //                            .tint(.black)
                             .foregroundColor(.primary)
                             .font(.system(size: 16, weight: .medium))
                             .frame(width: 36, height: 36)
@@ -50,7 +51,7 @@ struct HomeView: View {
                     HStack(spacing: 25) {
                         ForEach(sectionData) { item in
                             GeometryReader { geometry in
-
+                                
                                 SectionView(section: item)
                                     .rotation3DEffect(Angle(degrees:
                                                                 Double(geometry.frame(in: .global).minX - 70) / 40
@@ -73,14 +74,14 @@ struct HomeView: View {
                 }
                 .padding(.leading, 30)
                 .offset(y: -60)
-
+                
                 
                 SectionView(section: sectionData[2], width: screen.width - 60  , height: 275)
                     .offset(y: -60)
-
+                
                 Spacer()
             }
-            .frame(width: screen.width)
+            .frame(maxWidth: .infinity)
         }
     }
 }
@@ -89,8 +90,7 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(
             showProfile: .constant(false),
-            showContent: .constant(false)
-        )
+            showContent: .constant(false))
         .environmentObject(UserStore())
     }
 }
@@ -148,7 +148,7 @@ struct WatchRingsView: View {
         HStack(spacing: 15) {
             HStack(spacing: 12.0) {
                 RingView(color1: Color.purple, color2: Color.cyan, width: 44, height: 44, percent: 53 , showCircle: .constant(true))
-              
+                
                 VStack(alignment: .leading, spacing: 4.0)  {
                     Text ("7 minute left").bold().modifier(FontModifier(style: .subheadline))
                     Text ("watched 10 mins today") .modifier(FontModifier(style: .caption ))

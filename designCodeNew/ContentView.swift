@@ -79,36 +79,38 @@ struct ContentView: View {
                         }
                 )
             
-            BottomCardView(showCircle: $showCard)
-                .offset(x: 0, y: showCard ? 360 : 1000)
-                .offset(y: bottomState.height)
-                .blur(radius: show ? 20 : 0)
-                .animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 0.8), value: showCard)
-                .gesture(
-                    DragGesture().onChanged { value in
-                        bottomState = value.translation
-                        if showFull {
-                        bottomState.height += -300
-                        }
-                        if bottomState.height < -300 {
-                            bottomState.height = -300
-                        }
-                    }
-                        .onEnded { value in
-                            if bottomState.height > 50 {
-                                showCard = false
+            GeometryReader { bounds in
+                BottomCardView(showCircle: $showCard)
+                    .offset(x: 0, y: showCard ? bounds.size.height / 2 : bounds.size.height + bounds.safeAreaInsets.top + bounds.safeAreaInsets.bottom)
+                    .offset(y: bottomState.height)
+                    .blur(radius: show ? 20 : 0)
+                    .animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 0.8), value: showCard)
+                    .gesture(
+                        DragGesture().onChanged { value in
+                            bottomState = value.translation
+                            if showFull {
+                            bottomState.height += -300
                             }
-                            if (bottomState.height < -100 && !showFull) || (bottomState.height < -250 && showFull) {
+                            if bottomState.height < -300 {
                                 bottomState.height = -300
-                                showFull = true
-                            } else {
-                                bottomState = .zero
-                                showFull = false
+                            }
+                        }
+                            .onEnded { value in
+                                if bottomState.height > 50 {
+                                    showCard = false
+                                }
+                                if (bottomState.height < -100 && !showFull) || (bottomState.height < -250 && showFull) {
+                                    bottomState.height = -300
+                                    showFull = true
+                                } else {
+                                    bottomState = .zero
+                                    showFull = false
+                                    
+                                }
                                 
                             }
-                            
-                        }
                 )
+            }
         }
     }
 }
@@ -217,9 +219,10 @@ struct BottomCardView: View {
         }
         .padding(.top, 8)
         .padding(.horizontal, 20)
-        .frame( maxWidth: .infinity)
-        .background(BlurView(style: .systemUltraThinMaterial))
+        .frame(maxWidth: 712)
+        .background(BlurView(style: .systemThinMaterial))
         .cornerRadius(30)
         .shadow(radius: 20)
+        .frame(maxWidth: .infinity)
     }
 }

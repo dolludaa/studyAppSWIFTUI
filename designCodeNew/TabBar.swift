@@ -17,7 +17,7 @@ struct TabBar: View {
             
             CourseList().tabItem {
                 Image (systemName: "rectangle.stack.fill")
-                Text("Coursesva")
+                Text("Courses")
             }
         }
     }
