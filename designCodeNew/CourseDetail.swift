@@ -15,6 +15,7 @@ struct CourseDetail: View {
     @Binding var active: Bool
     @Binding var activeIndex: Int
     @Binding var activeView: CGSize
+    @Binding var isScrollable: Bool
     
     var body: some View {
         ScrollView {
@@ -40,6 +41,7 @@ struct CourseDetail: View {
                             .frame(width: 36, height: 36)
                             .background(Color.black)
                             .clipShape(Circle())
+                            .offset(x: 2, y: -2)
                         }
                     }
                     Spacer()
@@ -59,6 +61,7 @@ struct CourseDetail: View {
                     self.show = false
                     self.active = false
                     self.activeIndex = -1
+                    self.isScrollable = false 
                 }
                 .shadow(color: course.color.opacity(0.6), radius: 20, x: 0, y: 20)
                 
@@ -80,8 +83,9 @@ struct CourseDetail: View {
     }
 }
 
-//struct CourseDetail_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CourseDetail(course: courseData[0], show: .constant(true),active: .constant(true), activeIndex: .constant(-1), activeView: .constant(.zero))
-//    }
-//}
+struct CourseDetail_Previews: PreviewProvider {
+    static var previews: some View {
+        CourseDetail(course: courseData[0], show: .constant(true),active: .constant(true), activeIndex: .constant(-1), activeView: .constant(.zero), isScrollable: .constant(true))
+    }
+}
+
