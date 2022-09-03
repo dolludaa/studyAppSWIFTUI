@@ -80,8 +80,8 @@ struct CourseDetail: View {
     }
 }
 
-struct CourseDetail_Previews: PreviewProvider {
-    static var previews: some View {
-        CourseDetail(course: courseData[0], show: .constant(true),active: .constant(true), activeIndex: .constant(-1), activeView: .constant(.zero))
-    }
-}
+//struct CourseDetail_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CourseDetail(course: courseData[0], show: .constant(true),active: .constant(true), activeIndex: .constant(-1), activeView: .constant(.zero))
+//    }
+//}
