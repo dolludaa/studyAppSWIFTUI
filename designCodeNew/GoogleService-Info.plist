@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>556939955689-qfq6p7qs7ufvm943thj0g2c6tndn8162.apps.googleusercontent.com</string>
+	<string>556939955689-c3lkbouh63egjongv638653pi3c8u75b.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.556939955689-qfq6p7qs7ufvm943thj0g2c6tndn8162</string>
+	<string>com.googleusercontent.apps.556939955689-c3lkbouh63egjongv638653pi3c8u75b</string>
 	<key>API_KEY</key>
 	<string>AIzaSyATpbpeZK6LYqGYuUculn6SjzUffgMgdY8</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>io.designcode.designCodeNew</string>
+	<string>io.designcode.designCodeNew.Luda</string>
 	<key>PROJECT_ID</key>
 	<string>swiftuiproject-be730</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:556939955689:ios:e1e087e8c0089165d18f78</string>
+	<string>1:556939955689:ios:742234ad28506d91d18f78</string>
 </dict>
 </plist>

@@ -20,15 +20,19 @@ struct Home: View {
                 .animation(.spring(response: 0.9, dampingFraction: 0.7, blendDuration:0.8), value: showProfile)
                 .edgesIgnoringSafeArea(.all)
             
-            HomeBackgroundView(showProfile: $showProfile)
-                .offset(y: showProfile ? -450 : 0)
-                .rotation3DEffect(Angle(degrees: showProfile ? Double(viewState.height / 10) - 10 : 0), axis: (x: 10.0, y: 0, z: 0))
-                .scaleEffect(showProfile ? 0.9 : 1)
-                .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
-                .edgesIgnoringSafeArea(.all)
+            ZStack {
+                HomeBackgroundView(showProfile: $showProfile)
+                    .edgesIgnoringSafeArea(.all)
+                
+                HomeView(showProfile: $showProfile, showContent: $showContent)
+            }
+            .offset(y: showProfile ? -450 : 0)
+            .rotation3DEffect(Angle(degrees: showProfile ? Double(viewState.height / 10) - 10 : 0), axis: (x: 10.0, y: 0, z: 0))
+            .scaleEffect(showProfile ? 0.9 : 1)
+            .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
             
 //            TabView {
-                HomeView(showProfile: $showProfile, showContent: $showContent)
+                
 //                    .tabItem {
 //                        Image(systemName: "play.circle.fill")
 //                        Text("Home")

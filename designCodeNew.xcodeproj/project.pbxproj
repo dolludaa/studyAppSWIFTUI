@@ -21,10 +21,10 @@
 		444365E128BE7CAD00701790 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444365E028BE7CAD00701790 /* LottieView.swift */; };
 		444365E328BE7F1600701790 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444365E228BE7F1600701790 /* LoadingView.swift */; };
 		444365E528BE841F00701790 /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444365E428BE841F00701790 /* SuccessView.swift */; };
-		444365E728BE8F0000701790 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 444365E628BE8F0000701790 /* GoogleService-Info.plist */; };
 		444365EE28BE959B00701790 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 444365ED28BE959B00701790 /* FirebaseAuth */; };
 		444365F028BE959B00701790 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 444365EF28BE959B00701790 /* FirebaseStorage */; };
 		444365F428BFADDB00701790 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444365F328BFADDB00701790 /* UserStore.swift */; };
+		4490A7DC28C3FCEE00CB278C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4490A7DB28C3FCEE00CB278C /* GoogleService-Info.plist */; };
 		4495DECF28B11C7200A6FBDF /* View+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495DECE28B11C7200A6FBDF /* View+extension.swift */; };
 		44A1D9E628AADE1A00F8AC86 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A1D9E528AADE1A00F8AC86 /* Modifiers.swift */; };
 		44A1D9E828AE663700F8AC86 /* CourseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A1D9E728AE663700F8AC86 /* CourseList.swift */; };
@@ -57,8 +57,8 @@
 		444365E028BE7CAD00701790 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		444365E228BE7F1600701790 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		444365E428BE841F00701790 /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
-		444365E628BE8F0000701790 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		444365F328BFADDB00701790 /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
+		4490A7DB28C3FCEE00CB278C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4495DECE28B11C7200A6FBDF /* View+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+extension.swift"; sourceTree = "<group>"; };
 		44A1D9E528AADE1A00F8AC86 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		44A1D9E728AE663700F8AC86 /* CourseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseList.swift; sourceTree = "<group>"; };
@@ -145,7 +145,7 @@
 				44AF4ED428A90ADB00F66A36 /* Color+extension.swift */,
 				44A8E14028BE4EE9007E7FF0 /* loading.json */,
 				44A8E13F28BE4EE9007E7FF0 /* success.json */,
-				444365E628BE8F0000701790 /* GoogleService-Info.plist */,
+				4490A7DB28C3FCEE00CB278C /* GoogleService-Info.plist */,
 				4495DECE28B11C7200A6FBDF /* View+extension.swift */,
 				44AF4EC928A90ADB00F66A36 /* designCodeNew-Bridging-Header.h */,
 			);
@@ -234,7 +234,7 @@
 			files = (
 				44AF4EE428A90B2B00F66A36 /* Preview Assets.xcassets in Resources */,
 				44AF4EDE28A90ADB00F66A36 /* Assets.xcassets in Resources */,
-				444365E728BE8F0000701790 /* GoogleService-Info.plist in Resources */,
+				4490A7DC28C3FCEE00CB278C /* GoogleService-Info.plist in Resources */,
 				44A8E14228BE4EEA007E7FF0 /* loading.json in Resources */,
 				44A8E14128BE4EEA007E7FF0 /* success.json in Resources */,
 			);
@@ -416,7 +416,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = io.designcode.designCodeNew;
+				PRODUCT_BUNDLE_IDENTIFIER = io.designcode.designCodeNew.Luda;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "designCodeNew/designCodeNew-Bridging-Header.h";
@@ -449,7 +449,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = io.designcode.designCodeNew;
+				PRODUCT_BUNDLE_IDENTIFIER = io.designcode.designCodeNew.Luda;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "designCodeNew/designCodeNew-Bridging-Header.h";

@@ -160,7 +160,7 @@ struct CourseView: View {
             
             if isScrollable {
                 CourseDetail(course: course, show: $show, active: $active, activeIndex: $activeIndex, activeView: $activeView, isScrollable: $isScrollable)
-                    .background(Color.white)
+                    .background(Color("background1"))
                     .animation(nil)
                     .transition(.identity)
             }
