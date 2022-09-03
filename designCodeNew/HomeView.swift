@@ -5,6 +5,10 @@ struct HomeView: View {
     @Binding var showProfile: Bool
     @State var showUpdate = false
     @Binding var showContent: Bool
+    @ObservedObject var store = CourseStore()
+    @State var active = false
+    @State var activeIndex = -1
+    @State var avtiveView = CGSize.zero
     
     var body: some View {
         ScrollView {
@@ -36,6 +40,7 @@ struct HomeView: View {
                 .padding(.horizontal)
                 .padding(.leading, 20)
                 .padding(.top)
+                .blur(radius: self.active ? 20 : 0)
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     WatchRingsView()
@@ -45,6 +50,7 @@ struct HomeView: View {
                             showContent = true
                         }
                 }
+                .blur(radius: self.active ? 20 : 0)
                 
                 
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -66,6 +72,7 @@ struct HomeView: View {
                     .padding(.trailing, 40)
                 }
                 .offset(y: -30)
+                .blur(radius: self.active ? 20 : 0)
                 
                 HStack {
                     Text ("Courses")
@@ -74,10 +81,35 @@ struct HomeView: View {
                 }
                 .padding(.leading, 30)
                 .offset(y: -60)
+                .blur(radius: self.active ? 20 : 0)
                 
                 
-                SectionView(section: sectionData[2], width: screen.width - 60  , height: 275)
-                    .offset(y: -60)
+                VStack(spacing: 30.0) {
+                    ForEach(store.courses.indices, id: \.self ) { index in
+                        GeometryReader { geometry in
+                            CourseView(
+                                show: $store.courses[index].show,
+                                course: store.courses[index],
+                                active: $active,
+                                index: index,
+                                activeIndex: self.$activeIndex
+                            )
+                            .offset(y: store.courses[index].show
+                                    ? -geometry.frame (in:.global).minY : 0)
+                            .opacity(self.activeIndex != index && self.active ? 0 : 1)
+                            .scaleEffect(self.activeIndex != index && self.active ? 0.5 : 1)
+                            .offset(x: self.activeIndex != index && self.active ? screen.width : 0)
+                            
+                            
+                        }
+                        .frame(height: 280)
+                        .frame(maxWidth: self.store.courses[index].show ? .infinity : screen.width - 60)
+                        .zIndex(self.store.courses[index].show ? 1 : 0)
+                        
+                    }
+                }
+                .offset(y: -60)
+
                 
                 Spacer()
             }
