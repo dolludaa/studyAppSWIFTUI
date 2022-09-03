@@ -16,7 +16,7 @@ struct Home: View {
     var body: some View {
         ZStack {
             
-           Color("background2")
+            Color("background2")
                 .animation(.spring(response: 0.9, dampingFraction: 0.7, blendDuration:0.8), value: showProfile)
                 .edgesIgnoringSafeArea(.all)
             
@@ -28,7 +28,7 @@ struct Home: View {
                             .frame(height: 200)
                         Spacer()
                     }
-                    .background(Color("background1"))
+                        .background(Color("background1"))
                 )
                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
@@ -40,24 +40,24 @@ struct Home: View {
             
             
             MenuView(showProfile: $showProfile)
-                .background(Color.black.opacity(0.001))
                 .offset(y: showProfile ? 0 : .infinity)
                 .offset(y: viewState.height)
                 .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0), value: showProfile)
                 .onTapGesture {
                     showProfile.toggle()
-            }
-            .gesture(
-                DragGesture().onChanged { value in
-                    viewState = value.translation
                 }
-                .onEnded { value in
-                    if viewState.height > 50 {
-                        showProfile = false
+                .gesture(
+                    DragGesture().onChanged { value in
+                        viewState = value.translation
                     }
-                    viewState = .zero
-                }
-            )
+                        .onEnded { value in
+                            if viewState.height > 50 {
+                                showProfile = false
+                            }
+                            viewState = .zero
+                        }
+                )
+            
             if user.showLogin {
                 ZStack {
                     LoginView()
@@ -67,20 +67,20 @@ struct Home: View {
                             Spacer()
                             
                             Image(systemName: "xmark")
-                            .frame(width: 36, height: 36)
-                            .foregroundColor(.white)
-                            .background(Color.black)
-                            .clipShape(Circle())
+                                .frame(width: 36, height: 36)
+                                .foregroundColor(.white)
+                                .background(Color.black)
+                                .clipShape(Circle())
                         }
                         Spacer()
                     }
-                    .padding(.top, 60)
-                    .padding(.trailing, 30)
+                    .padding()
                     .onTapGesture {
                         self.user.showLogin = false
                     }
                 }
             }
+            
             if showContent {
                 BlurView(style: .systemMaterial).edgesIgnoringSafeArea(.all)
                 
@@ -92,9 +92,9 @@ struct Home: View {
                         Spacer()
                         
                         Image(systemName: "xmark")
-                        .frame(width: 36, height: 36)
-                        .foregroundColor(.white)
-                        .background(Color.black)
+                            .frame(width: 36, height: 36)
+                            .foregroundColor(.white)
+                            .background(Color.black)
                             .clipShape(Circle())
                     }
                     Spacer()
@@ -109,14 +109,14 @@ struct Home: View {
         }
     }
 }
-            
-            
-  
+
+
+
 struct Home__Previews: PreviewProvider {
     static var previews: some View {
         Home()
-//        .environment(\.colorScheme, .dark)
-//            .environment(\.dynamicTypeSize, .xLarge)
+        //        .environment(\.colorScheme, .dark)
+        //            .environment(\.dynamicTypeSize, .xLarge)
             .environmentObject(UserStore())
     }
 }
@@ -129,22 +129,22 @@ struct AvatarView: View {
         VStack {
             if user.isLogged {
                 Button(action: { self.showProfile.toggle() }) {
-                Image("Avatar")
-                    .renderingMode(.original)
-                    .resizable()
-                    .frame(width: 36, height: 36)
-                    .clipShape(Circle())
+                    Image("Avatar")
+                        .renderingMode(.original)
+                        .resizable()
+                        .frame(width: 36, height: 36)
+                        .clipShape(Circle())
                 }
             } else {
                 Button(action: { self.user.showLogin.toggle() }) {
-                Image(systemName: "person")
-                    .foregroundColor(.primary)
-                    .font(.system(size: 16, weight: .medium))
-                    .frame(width: 36, height: 36)
-                    .background(Color("background3"))
-                    .clipShape(Circle())
-                    .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
-                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
+                    Image(systemName: "person")
+                        .foregroundColor(.primary)
+                        .font(.system(size: 16, weight: .medium))
+                        .frame(width: 36, height: 36)
+                        .background(Color("background3"))
+                        .clipShape(Circle())
+                        .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+                        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
                 }
             }
         }

@@ -63,7 +63,6 @@ struct LoginView: View {
             }
             .padding(.horizontal)
             
-            
             if isLoading {
                 LoadingView()
             }
@@ -72,7 +71,6 @@ struct LoginView: View {
                 SuccessView()
             }
         }
-        
     }
     
     func login() {
@@ -94,6 +92,7 @@ struct LoginView: View {
                     isSuccessful = false
                     email = ""
                     password = ""
+                    user.showLogin = false 
                 }
             }
         }
@@ -194,7 +193,7 @@ struct LoginFieldsView: View {
                     .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
                     .padding(.leading)
                 
-                TextField( "Your email".uppercased(), text: $email)
+                TextField("Your email".uppercased(), text: $email)
                     .keyboardType(.emailAddress)
                     .font(.subheadline)
                     .padding(.leading)
