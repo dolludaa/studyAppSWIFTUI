@@ -56,7 +56,7 @@ struct CourseList: View {
                 .animation(.spring())
             }
         }
-        //        .statusBar(hidden: active ? true : false )
+        
         
     }
 }
@@ -77,6 +77,7 @@ struct CourseView: View {
     var index: Int
     @Binding var activeIndex: Int
     @State var activeView = CGSize.zero
+    @State var isScrollable = false
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -95,7 +96,7 @@ struct CourseView: View {
             .padding(22)
             .frame(maxWidth: CGFloat(show ? .infinity : screen.width ), maxHeight: show ? 2000 : 280, alignment: .top)
             .offset(y: show ? 350 : 0)
-            .background(Color("background2"))
+            .background(Color("background1"))
             .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
 //            .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
             .opacity(show ? 1 : 0)
@@ -152,12 +153,16 @@ struct CourseView: View {
                 } else {
                     self.activeIndex = -1
                 }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                    self.isScrollable = true
+                }
             }
             
-            if show {
-//                CourseDetail(course: course, show: $show, active: $active, activeIndex: $activeIndex, activeView: $activeView)
-//                    .background(Color.white)
-//                    .animation(nil)
+            if isScrollable {
+                CourseDetail(course: course, show: $show, active: $active, activeIndex: $activeIndex, activeView: $activeView, isScrollable: $isScrollable)
+                    .background(Color.white)
+                    .animation(nil)
+                    .transition(.identity)
             }
             
         }
@@ -180,9 +185,9 @@ struct Course: Identifiable {
     var show: Bool
 }
 
-//var courseData = [
-//    Course (title: "Prototype designs in SwiftUi", subtitle: "18 sections", image: URL(string: "https://dl.dropbox.com/s/1e1a5isj56g922q/Card1%402x.png?dl=0")!, logo: Image("Logo1"), color: Color.cyan.opacity(0.4), show: false),
-//    Course (title: "SwiftUI Advanced", subtitle: "15 sections", image: URL(string: "https://dl.dropbox.com/s/qbfli2ix4efs8jf/Card2%402x.png?dl=0")!, logo: Image("Logo1"), color: Color.teal.opacity(0.4), show: false),
-//     Course (title: "Build a SwiftUI App", subtitle: "20 sections", image: URL(string: "https://dl.dropbox.com/s/n44t2dpj8lz4l5b/Card4%402x.png?dl=0")!, logo: Image("Logo1"), color: Color.red.opacity(0.4), show: false)
-//]
+var courseData = [
+    Course (title: "Prototype designs in SwiftUi", subtitle: "18 sections", image: URL(string: "https://dl.dropbox.com/s/1e1a5isj56g922q/Card1%402x.png?dl=0")!, logo: Image("Logo1"), color: Color.cyan.opacity(0.5), show: false),
+    Course (title: "SwiftUI Advanced", subtitle: "15 sections", image: URL(string: "https://dl.dropbox.com/s/qbfli2ix4efs8jf/Card2%402x.png?dl=0")!, logo: Image("Logo1"), color: Color.teal.opacity(0.5), show: false),
+     Course (title: "Build a SwiftUI App", subtitle: "20 sections", image: URL(string: "https://dl.dropbox.com/s/n44t2dpj8lz4l5b/Card4%402x.png?dl=0")!, logo: Image("Logo1"), color: Color.red.opacity(0.5), show: false)
+]
 
