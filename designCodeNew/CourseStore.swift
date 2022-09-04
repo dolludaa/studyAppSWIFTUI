@@ -29,7 +29,7 @@ func getArray(id: String, completion: @escaping ([Entry]) -> Void ) {
 }
 
 final class CourseStore: ObservableObject {
-    @Published var courses: [Course] = []//courseData
+    @Published var courses: [Course] = []
      
     init () {
         let colors = [
@@ -42,23 +42,16 @@ final class CourseStore: ObservableObject {
         ]
             .map { $0.opacity(0.5) }
         
-//        [Color.blue.opacity(0.4), Color.pink.opacity(0.4), Color.green.opacity(0.4)]
-        var index = 0
-        
         getArray(id: "course") { [weak self] items in
-            items.forEach { item in
-                let course = Course(
+            self?.courses = items.enumerated().map { i, item in
+                Course(
                     title: item.fields["title"] as! String,
                     subtitle: item.fields["subtitle"] as! String,
                     image: item.fields.linkedAsset(at: "image")?.url ?? URL(string: "")!,
                     logo: Image("Logo1"),
-                    color: colors[index % colors.count],
+                    color: colors[i % colors.count],
                     show: false
                 )
-                
-                self?.courses.append(course)
-                
-                index = index + 1
             }
         }
     }

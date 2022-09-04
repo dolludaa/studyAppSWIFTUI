@@ -11,7 +11,7 @@ struct HomeView: View {
     @State var avtiveView = CGSize.zero
     
     var body: some View {
-        ScrollView {
+        ScrollView() {
             VStack {
                 HStack{
                     Text("Watching")
@@ -114,6 +114,9 @@ struct HomeView: View {
                 Spacer()
             }
             .frame(maxWidth: .infinity)
+        }
+        .introspectScrollView { scrollView in
+            scrollView.isScrollEnabled = activeIndex == -1
         }
     }
 }

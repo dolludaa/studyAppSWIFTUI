@@ -1,7 +1,6 @@
-
-
 import SwiftUI
 import SDWebImageSwiftUI
+import Introspect
 
 struct CourseList: View {
     
@@ -13,7 +12,7 @@ struct CourseList: View {
     
     var body: some View {
         ZStack {
-            Color.white
+            Color("backround1")
                 .animation(.linear, value: active)
                 .edgesIgnoringSafeArea(.all)
             
@@ -27,7 +26,6 @@ struct CourseList: View {
                         .padding(.top,30)
                         .blur(radius: active ? 20 : 0)
                     
-                    
                     ForEach(store.courses.indices, id: \.self ) { index in
                         GeometryReader { geometry in
                             CourseView(
@@ -35,19 +33,19 @@ struct CourseList: View {
                                 course: store.courses[index],
                                 active: $active,
                                 index: index,
-                                activeIndex: self.$activeIndex
+                                activeIndex: $activeIndex
                             )
                             .offset(y: store.courses[index].show
-                                    ? -geometry.frame (in:.global).minY : 0)
-                            .opacity(self.activeIndex != index && self.active ? 0 : 1)
-                            .scaleEffect(self.activeIndex != index && self.active ? 0.5 : 1)
-                            .offset(x: self.activeIndex != index && self.active ? screen.width : 0)
+                                    ? -geometry.frame(in: .global).minY : 0)
+                            .opacity(activeIndex != index && active ? 0 : 1)
+                            .scaleEffect(activeIndex != index && active ? 0.5 : 1)
+                            .offset(x: activeIndex != index && active ? screen.width : 0)
                             
                             
                         }
                         .frame(height: 280)
-                        .frame(maxWidth: self.store.courses[index].show ? .infinity : screen.width - 60)
-                        .zIndex(self.store.courses[index].show ? 1 : 0)
+                        .frame(maxWidth: store.courses[index].show ? .infinity : screen.width - 60)
+                        .zIndex(store.courses[index].show ? 1 : 0)
                         
                     }
                     
@@ -55,13 +53,14 @@ struct CourseList: View {
                 .frame(width: screen.width)
                 .animation(.spring())
             }
+            .introspectScrollView { scrollView in
+                scrollView.isScrollEnabled = activeIndex == -1
+            }
         }
         
         
     }
 }
-
-
 
 struct CourseList_Previews: PreviewProvider {
     static var previews: some View {
@@ -82,7 +81,7 @@ struct CourseView: View {
     var body: some View {
         ZStack(alignment: .top) {
             
-            VStack(alignment: .leading, spacing: 30.0) {
+            VStack(alignment: .leading, spacing: 30) {
                 
                 Text ("Take your SwiftUI app to the App Store with advanced techniques like API data, packages and CMS")
                 
@@ -93,19 +92,17 @@ struct CourseView: View {
                 
                 Text("Minimal coding experience required, such as in HTML and CSS. Please note that Xcode 11 and Catalina are essential. Once you get everything installed, it'll get a lot friendlier! I added a bunch of troubleshoots at the end of this page to help you navigate the issues you might encounter.")
             }
+            .padding(.top, 19)
             .padding(22)
             .frame(maxWidth: CGFloat(show ? .infinity : screen.width ), maxHeight: show ? 2000 : 280, alignment: .top)
             .offset(y: show ? 350 : 0)
             .background(Color("background1"))
             .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-//            .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
             .opacity(show ? 1 : 0)
-            
-            
             
             VStack {
                 HStack(alignment: .top) {
-                    VStack(alignment: .leading, spacing: 8.0) {
+                    VStack(alignment: .leading, spacing: 8) {
                         Text(course.title)
                             .font(.system(size: 24, weight: .bold))
                             .foregroundColor(Color.white)
@@ -113,7 +110,9 @@ struct CourseView: View {
                             .foregroundColor(Color.white.opacity(0.7))
                         
                     }
+                    
                     Spacer()
+                    
                     ZStack {
                         course.logo
                             .opacity(show ? 0 : 1)
@@ -127,10 +126,12 @@ struct CourseView: View {
                         .frame(width: 36, height: 36)
                         .background(Color.black)
                         .clipShape(Circle())
+                        .offset(x: 3, y: -3)
                         .opacity(show ? 1 : 0 )
                         
                     }
                 }
+                
                 Spacer()
                 
                 WebImage(url: course.image)
@@ -146,15 +147,15 @@ struct CourseView: View {
             .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
             .shadow(color: course.color.opacity(0.6), radius: 20, x: 0, y: 20)
             .onTapGesture {
-                self.show.toggle()
-                self.active.toggle()
-                if self.show {
-                    self.activeIndex = self.index
+                show.toggle()
+                active.toggle()
+                if show {
+                    activeIndex = index
                 } else {
-                    self.activeIndex = -1
+                    activeIndex = -1
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                    self.isScrollable = true
+                    isScrollable = true
                 }
             }
             
@@ -167,11 +168,7 @@ struct CourseView: View {
             
         }
         .frame(height: show ? screen.height : 280)
-//        .scaleEffect(1 - self.activeView.height / 1000)
         .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
-        .edgesIgnoringSafeArea(.all)
-        
-        
     }
 }
 
@@ -184,10 +181,3 @@ struct Course: Identifiable {
     var color: Color
     var show: Bool
 }
-
-var courseData = [
-    Course (title: "Prototype designs in SwiftUi", subtitle: "18 sections", image: URL(string: "https://dl.dropbox.com/s/1e1a5isj56g922q/Card1%402x.png?dl=0")!, logo: Image("Logo1"), color: Color.cyan.opacity(0.5), show: false),
-    Course (title: "SwiftUI Advanced", subtitle: "15 sections", image: URL(string: "https://dl.dropbox.com/s/qbfli2ix4efs8jf/Card2%402x.png?dl=0")!, logo: Image("Logo1"), color: Color.teal.opacity(0.5), show: false),
-     Course (title: "Build a SwiftUI App", subtitle: "20 sections", image: URL(string: "https://dl.dropbox.com/s/n44t2dpj8lz4l5b/Card4%402x.png?dl=0")!, logo: Image("Logo1"), color: Color.red.opacity(0.5), show: false)
-]
-

@@ -18,11 +18,11 @@ struct CourseDetail: View {
     @Binding var isScrollable: Bool
     
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             VStack {
                 VStack {
                     HStack(alignment: .top) {
-                        VStack(alignment: .leading, spacing: 8.0) {
+                        VStack(alignment: .leading, spacing: 8) {
                             Text(course.title)
                                 .font(.system(size: 24, weight: .bold))
                                 .foregroundColor(Color.white)
@@ -77,15 +77,17 @@ struct CourseDetail: View {
                     Text("Minimal coding experience required, such as in HTML and CSS. Please note that Xcode 11 and Catalina are essential. Once you get everything installed, it'll get a lot friendlier! I added a bunch of troubleshoots at the end of this page to help you navigate the issues you might encounter.")
                 }
                 .padding(22)
+                .padding(.bottom, active ? 80 : 0)
             }
         }
-        .edgesIgnoringSafeArea(.all)
     }
 }
 
 struct CourseDetail_Previews: PreviewProvider {
     static var previews: some View {
-        CourseDetail(course: courseData[0], show: .constant(true),active: .constant(true), activeIndex: .constant(-1), activeView: .constant(.zero), isScrollable: .constant(true))
+        let course = Course (title: "Prototype designs in SwiftUi", subtitle: "18 sections", image: URL(string: "https://dl.dropbox.com/s/1e1a5isj56g922q/Card1%402x.png?dl=0")!, logo: Image("Logo1"), color: Color.cyan.opacity(0.5), show: false)
+        
+        CourseDetail(course: course, show: .constant(true),active: .constant(true), activeIndex: .constant(-1), activeView: .constant(.zero), isScrollable: .constant(true))
     }
 }
 
