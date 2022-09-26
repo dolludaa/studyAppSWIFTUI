@@ -22,14 +22,14 @@ struct MenuView: View {
                 
                 Color.white
                     .frame(width: 38, height: 6)
-                    .cornerRadius(3)
+//                    .cornerRadius(3)
                     .frame(width: 130, height: 6,alignment: .leading)
                     .background(Color.black.opacity(0.08))
-                    .cornerRadius(3)
+//                    .cornerRadius(3)
                     .padding()
                     .frame(width: 150, height: 24)
                     .background(Color.black.opacity(0.1))
-                    .cornerRadius(12)
+//                    .cornerRadius(12)
                 
                 MenuRow(title: "Account ", icon: "gear")
                 MenuRow(title: "Billing ", icon: "creditcard")
