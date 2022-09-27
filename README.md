@@ -7,7 +7,7 @@ This application consists of the main screen, a screen with a list of courses, a
 
 
 ## _WHAT I'VE LEARNED_ :bangbang:
-* In order to create changing cards on the certificate screen, I studied 3D rotation effect, which helped me make my animation more dynamic and the screen itself unique :computer:
+* In order to create changing cards effect on the certificate screen, I studied 3D rotation effect, which helped me make my animation more dynamic and the screen itself unique :computer:
 * Since many lines of code can be repeated, I implemented modifiers in my code that helped make my code cleaner and clearer, and most importantly more readable
 ```swift 
 struct FontModifier: ViewModifier{
