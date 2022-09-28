@@ -18,7 +18,12 @@ struct FontModifier: ViewModifier{
     }
 }
 ```
+ <br>
+
  While using, this modifier looks like this, which helped me not to overdo it and make my code more flexible
+
+  <br>
+
 
  ```swift
  VStack(alignment: .leading, spacing: 4.0)  {
@@ -28,7 +33,7 @@ struct FontModifier: ViewModifier{
                 }
                 .modifier(FontModifier())
 ```
-* Also, one of the main tasks was to explore the API and JSON. To upload data U created a function that made an API call. It got some data back from the API in JSON format and then I decoded it. To do so, create a class API 
+* Also, one of the main tasks was to explore the API and JSON. To upload data I created a function that made an API call. It got some data back from the API in JSON format and then I decoded it. To do so, create a class API 
   ```swift
   class API {
     func getPosts(completion: @escaping ([Post]) -> () ) {
@@ -52,13 +57,16 @@ struct FontModifier: ViewModifier{
 
 > With the help of Contentful, I was able to easily get data. The work will also be facilitated by the Contenful website, where you can easily request all the necessary data and then get them in code :books:
 
-> I also used the Combine library to initialize the data received after the Conyenyful request
+> I also used the Combine library, and with the help of Publisher I entered a variable in order to keep track of all the changes and most importantly they can transmit a sequence of values over time
 
 ```swift 
 import Contentful
 import Combine
 ```
 ```swift 
+final class CourseStore: ObservableObject {
+    @Published var courses: [Course] = []
+     
 init () {
         let colors = [
             Color.blue,
@@ -105,8 +113,11 @@ init () {
 ```                
 
 ## More about the app 
+ <br>
 
-## The main 3 screens. 
+###  The main 3 screens. 
+ <br>
+
 
 
 <p align="center" width="100%">
@@ -121,18 +132,24 @@ init () {
    
 3. Inside each course there is a detailed description so that everyone can find the course that suits him
 
+# Other features
 
+ <br>
 
 <img align="center" width="100%" src="https://user-images.githubusercontent.com/111228178/192779940-d8d2b0ac-8ea8-4768-bcdb-74aea07fccae.png">
 
+ <br>
 
-1. The app also has fully custom navigation. clicking on the button of how many percent of the course is left, we go to the screen with available certificates that show how many courses have been completed
+ 1. The app also has fully custom navigation. clicking on the button of how many percent of the course is left, we go to the screen with available certificates that show how many courses have been completed
+
+ 2.  When you click on the certificate itself, we go to a nested screen that shows the name of the course for which the certificate was received, how many classes were in the course and by what percentage the test was finally passed
    
-2. When you click on the certificate itself, we go to a nested screen that shows the name of the course for which the certificate was received, how many classes were in the course and by what percentage the test was finally passed
+ 3.   Also, when we log in to the personal account, we open another additional screen of the personal account, on which there is your photo, name, percentage of how many courses have been completed and various additional services such as payment, settings
+     
+ 4.    And there is also a screen on which updates of courses are shown, which can be edited, added, moved, deleted in every possible way
 
-3. Also, when we log in to the personal account, we open another additional screen of the personal account, on which there is your photo, name, percentage of how many courses have been completed and various additional services such as payment, settings
+ <br> 
 
-4. And there is also a screen on which updates of courses are shown, which can be edited, added, moved, deleted in every possible way
 ## Installation
 
 1. Clone or download the project to your local machine
@@ -155,4 +172,6 @@ init () {
 ## Prerequisites
 * A Mac running macOS Catalina
 * Xcode 14
+
+
 
